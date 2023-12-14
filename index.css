@@ -81,9 +81,23 @@ body{
     position: relative;
 }
 
+.error{
+    border: 2px solid var(--Red);
+}
+
+.error_message{
+    gap: 0;
+}
+
+.error_message::after{
+    content: "can't be blank";
+    color: var(--Red);
+    margin-top: .2rem;
+}
+
 #cvc{
     position: absolute;
-    color: var(--White);
+    color: var(--Light-grayish-violet);
     right: 3.5rem;
     top: 7rem;
 }
@@ -197,7 +211,7 @@ form button{
 .thank{
     width: 350px;
     display: flex;
-    flex-direction: center;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;

@@ -19,23 +19,21 @@ const completed=document.querySelector(".thank");
 const form=document.querySelector("form");
 
 function setCardNumber(e) {
-    cardNumber.innerText=format(e.target.value);
+    cardNumber.innerText = format(e.target.value);
 }
 function setCardName(e){
-    cardName.innerText=e.target.value;
+    cardName.innerText = format(e.target.value);
 }
 function setCardMonth(e) {
-    cardMonth.innerText=e.target.value;
+    cardMonth.innerText = format(e.target.value);
 }
 function setCardYear(e) {
-    cardYear.innerText = e.target.value;
+    cardYear.innerText = format(e.target.value);
 }
 function setCardCvc(e) {
-    cardCvc.innerText=e.target.value;
+    cardCvc.innerText = format(e.target.value);
 }
-function format(s) {
-    return s.toString().replace(/\d{4}(?=.)/g, "$&");
-}
+
 function handleSubmit(e) {
     e.preventDefault();
     if(!nameInp.value){
@@ -48,6 +46,8 @@ function handleSubmit(e) {
     if(!numberInp.value){
         numberInp.classList.add("error");
         numberInp.parentElement.classList.add("error_message");
+    } else if (numberInp.value.length < 16) {
+        numberInp.classList.add("error");
     } else {
         numberInp.classList.remove("error");
         numberInp.parentElement.classList.remove("error_message");
@@ -73,10 +73,14 @@ function handleSubmit(e) {
         cvcInp.classList.remove("error");
         cvcInp.parentElement.classList.remove("error_message");
     }
-    if(nameInp.value && numberInp.value && monthInp.value && yearInp.value && cvcInp.value) {
+    if(nameInp.value && numberInp.value && monthInp.value && yearInp.value && cvcInp.value && numberInp.value.length==16) {
         completed.classList.remove('hidden');
         form.classList.add("hidden");
     }
+}
+
+function format(s) {
+    return s.toString().replace(/\d{4}(?=.)/g, "$& ");
 }
 
 numberInp.addEventListener("keyup", setCardNumber);
